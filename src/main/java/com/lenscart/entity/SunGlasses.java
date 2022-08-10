@@ -35,12 +35,15 @@ public class SunGlasses {
 	@Column(name = "weight")
 	private double weight;
 
+	@Column(name = "image")
+	private String image;
+
 	public SunGlasses() {
 		super();
 	}
 
 	public SunGlasses(int sunGlassId, String sunGlassName, String brand, double price, String frameColor,
-			String frameShape, String glassColor, double weight) {
+			String frameShape, String glassColor, double weight, String image) {
 		super();
 		this.sunGlassId = sunGlassId;
 		this.sunGlassName = sunGlassName;
@@ -50,6 +53,7 @@ public class SunGlasses {
 		this.frameShape = frameShape;
 		this.glassColor = glassColor;
 		this.weight = weight;
+		this.image = image;
 	}
 
 	public int getSunGlassId() {
@@ -114,6 +118,14 @@ public class SunGlasses {
 
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }
