@@ -2,6 +2,9 @@ package com.lenscart.controller;
 
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +29,10 @@ public class FrameController {
 	@Autowired
 	private IFrameService frameService;
 	
+	
 	//add new frame
 	@PostMapping("frame")
-	public ResponseEntity<Frames> addFrame(@RequestBody Frames frame) 
+	public ResponseEntity<Frames> addFrame(@Valid @RequestBody Frames frame) 
 			throws InvalidProductDataException{
 		return new ResponseEntity<Frames>(frameService.addFrame(frame), HttpStatus.OK);
 	}
@@ -42,23 +46,24 @@ public class FrameController {
 	
 	//get frame details by ID
 	@GetMapping("frame/{frameId}")
-	public ResponseEntity<Frames> getFrameById(@PathVariable("frameId") Integer frameId)
+	public ResponseEntity<Frames> getFrameById(@PathVariable("frameId") int frameId)
 			throws IdNotFoundException {
 		return new ResponseEntity<Frames>(frameService.getFrameById(frameId), HttpStatus.OK);
 	}
 	
 	//delete
 	@DeleteMapping("frame/{frameId}")
-	public ResponseEntity<Frames> deleteFrame(@PathVariable("frameId") Integer frameId)
+	public ResponseEntity<List<Frames>> deleteFrame(@PathVariable("frameId") int frameId)
 			throws NoSuchProductFoundException{
-		frameService.deleteFrame(frameId);
-		return new ResponseEntity<> (null,HttpStatus.OK);
+		List<Frames> framelist = frameService.deleteFrame(frameId);
+		return new ResponseEntity<List<Frames>> (framelist,HttpStatus.OK);
 	}
 	
 	//Update frame details
 	@PutMapping("frame")
-	public ResponseEntity<Frames> updateFrame(@RequestBody Frames frame)
+	public ResponseEntity<Frames> updateFrame(@Valid @RequestBody Frames frame)
 			throws InvalidProductDataException{
 		return new ResponseEntity<Frames> (frameService.updateFrame(frame),HttpStatus.OK);
 	}
+	
 }

@@ -16,9 +16,9 @@ public interface IFrameService {
 
 	public List<Frames> getAllFrames();
 
-	public Frames getFrameById(Integer frameId)throws IdNotFoundException;
+	public Frames getFrameById(int frameId)throws IdNotFoundException;
 
-	public void deleteFrame(Integer frameId) throws NoSuchProductFoundException;
+	public List<Frames> deleteFrame(int frameId) throws NoSuchProductFoundException;
 
 	public Frames updateFrame(Frames frame)throws InvalidProductDataException;
 }

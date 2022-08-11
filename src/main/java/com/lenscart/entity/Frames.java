@@ -1,13 +1,12 @@
 package com.lenscart.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "frames")
@@ -22,6 +21,7 @@ public class Frames {
 	@NotBlank(message = "Frame name should not be null")
 	private String frameName;
 	
+	
 	@Column(name = "brand")
 	@NotBlank(message = "Frame brand should not be null")
 	private String brand;
@@ -31,7 +31,7 @@ public class Frames {
 	private String color;
 	
 	@Column(name = "price")
-	//@NotEmpty(message = "Frame price should not be null")
+	@NotNull(message = "Frame price should not be null")
 	private double price;
 	
 	@Column(name = "description")
@@ -45,6 +45,8 @@ public class Frames {
 	@Column(name = "size")
 	@NotBlank(message = "Frame size should not be null")
 	private String size;
+	
+	private String frameImage;
 	
 	public Frames() {
 		super();
@@ -98,6 +100,13 @@ public class Frames {
 	public void setSize(String size) {
 		this.size = size;
 	}
+	public String getFrameImage() {
+		return frameImage;
+	}
+	public void setFrameImage(String frameImage) {
+		this.frameImage = frameImage;
+	}
+	
 	@Override
 	public String toString() {
 		return "Frames [frameId=" + frameId + ", frameName=" + frameName + ", brand=" + brand + ", color=" + color
